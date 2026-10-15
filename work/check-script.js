@@ -1,0 +1,10 @@
+const fs=require('fs');
+const p='C:/Users/chalermkwan.p/Documents/Codex/2026-10-02/new-chat/outputs/LineReminderBot.gs';
+let s=fs.readFileSync(p,'utf8');
+s=s.replace(/items\.map\(formatTask_\)\.join\('\\n'\)/g,"items.map(formatTask_).join('\\n\\n')");
+s=s.replace(/'📅 แจ้งเตือนนัดหมาย \(' \+ today \+ '\)\\n' \+/g,"'📅 แจ้งเตือนนัดหมาย (' + today + ')\\n\\n' +");
+s=s.replace(/'📅 ' \+ label \+ ' \(' \+ date \+ '\)\\n' \+/g,"'📅 ' + label + ' (' + date + ')\\n\\n' +");
+s=s.replace(/'📅 สรุปงานวันที่ ' \+ date \+ ' \(' \+ items\.length \+ ' งาน\)\\n' \+/g,"'📅 สรุปงานวันที่ ' + date + ' (' + items.length + ' งาน)\\n\\n' +");
+fs.writeFileSync(p,s,'utf8');
+new Function(s);
+console.log('Formatting and JavaScript syntax check passed.');
